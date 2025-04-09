@@ -1,18 +1,19 @@
 
 # Configuring IdP-Initiated SSO in Keycloak with SAML 2.0 for OIDC Clients
 
+## Overview
 Single Sign-On (SSO) is a cornerstone of modern identity and access management strategies. In scenarios where an organization uses a centralized Identity Provider (IdP) and still wants to delegate application-level authentication through OpenID Connect (OIDC), Keycloak can act as an **identity broker**—bridging SAML-based identity assertions from an external IdP to OIDC-based clients.
 
 This guide outlines how to configure **IdP-Initiated SSO using SAML 2.0**, with Keycloak acting as a SAML proxy that federates authentication to **two OIDC clients** behind the scenes.
 
 ---
 
-## Architecture Overview
+## Implementation Architecture
 ![SSO Architecture Diagram](https://github.com/Tinsae-Tadesse/IdP-Initiated-SSO/blob/main/Architecture.png?raw=true)
 
 ---
 
-## Step-by-Step Implementation
+## Implementation Steps
 
 ### 1. Create a SAML Proxy Client in Keycloak
 
@@ -21,14 +22,19 @@ In Keycloak, a **SAML client** acts as the Assertion Consumer Service (ACS) endp
 - Go to **Clients > Create**.
 - **Client ID**: `saml-proxy-client` (or any name).
 - **Client Protocol**: `saml`.
-- **Client SAML Endpoint**: Use Keycloak’s default ACS endpoint:
-  ```
-  https://<keycloak-domain>/auth/realms/<realm-name>/broker/<idp-alias>/endpoint
-  ```
 - **Force POST Binding**: Enabled.
-- **Allow IDP-Initiated SSO**: Ensure Keycloak accepts unsolicited assertions.
 
 Save and configure signature and encryption settings as per your IdP requirements.
+
+**With these settings, Keycloak’s default ACS endpoint will handle SAML assertions for this client.**
+Keycloak's default ACS endpoint is at:
+```
+https://<keycloak-domain>/auth/realms/<realm-name>/broker/<idp-alias>/endpoint
+```
+For example, an actual ACS endpoint will look like:
+```
+https://example.com/auth/realms/DEFAULT/broker/external-idp/endpoint
+```
 
 ---
 
@@ -36,7 +42,7 @@ Save and configure signature and encryption settings as per your IdP requirement
 
 This step allows Keycloak to **trust the external IdP** and receive SAML assertions.
 
-- Go to **Identity Providers > Add provider > SAML**.
+- Go to **Identity Providers > Add provider > SAML v2.0**.
 - **Alias**: `external-idp`
 - **Import from URL or XML**: Use the IdP’s metadata URL or upload the XML.
 - **Single Sign-On Service URL**: Auto-filled from metadata.
@@ -55,8 +61,8 @@ To automatically **provision new users** or match existing users when logging in
 - Click **Copy** to duplicate the default flow.
 - Edit the new flow:
   - Add **Create User If Unique**
-  - Add **Review Profile** (optional)
-  - Add **Automatically Set Existing User**
+  - Add **Handle Existing Account**
+  - Add **Review Profile** (optional), in my case i removed this flow since i don't want my users to make changes to their profile passed from the IdP 
 
 Apply this flow to your IdP under **First Login Flow** settings.
 
@@ -81,12 +87,18 @@ Handle POSTs from IdP-Initiated SSO by rewriting to the OIDC client endpoint:
 ```apache
 RewriteEngine On
 RewriteCond %{REQUEST_METHOD} POST
-RewriteRule ^/auth/realms/your-realm/broker/external-idp/endpoint$ \
-    /auth/realms/your-realm/protocol/openid-connect/auth \
-    [R=302,L]
+RewriteRule ^/realms/<realm-name>/broker/<idp-alias>/endpoint$ \\
+  /realms/<realm-name>/protocol/openid-connect/auth?client_id=my-oidc-client-app&response_type=code&scope=openid&redirect_uri=https://my-app.example.com/callback \\
+  [R=302,L]
 ```
-
-Ensure the rule is context-aware to prevent redirect loops.
+For example:
+```apache
+RewriteEngine On
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^/realms/DEFAULT/broker/external-idp/endpoint$ \\
+  /realms/DEFAULT/protocol/openid-connect/auth?client_id=my-oidc-client-app&response_type=code&scope=openid&redirect_uri=https://my-oidc-client-app.example.com/ui/ \\
+  [R=302,L]
+```
 
 ---
 
