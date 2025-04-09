@@ -9,7 +9,7 @@ This guide outlines how to configure **IdP-Initiated SSO using SAML 2.0**, with 
 
 ## Architecture Overview
 
-![Config.png](SSO Architecture Diagram)
+![https://github.com/Tinsae-Tadesse/IdP-Initiated-SSO/blob/b150d60b130b988f0a35ccf3a39745fac52c81f7/Config.png](SSO Architecture Diagram)
 
 ---
 
