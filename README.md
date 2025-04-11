@@ -1,14 +1,10 @@
 
 # 🛡️ Configuring IdP-Initiated SSO for Keycloak as a SAML 2.0 Identity Broker for OIDC Clients
 
-## Overview
+## 📌 Overview
 Single Sign-On (SSO) is a cornerstone of modern identity and access management strategies. In scenarios where an organization uses a centralized Identity Provider (IdP) and still wants to delegate application-level authentication through OpenID Connect (OIDC), Keycloak can act as an **identity broker**—bridging SAML-based identity assertions from an external IdP to OIDC-based clients.
 
 This guide outlines how to configure **IdP-Initiated SSO using SAML 2.0**, with Keycloak acting as a SAML proxy that federates authentication to **two OIDC clients** behind the scenes.
-
----
-
-## 📌 Use Case Overview
 
 Assumtions:
 
