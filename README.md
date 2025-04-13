@@ -55,13 +55,22 @@ This sets up trust between Keycloak and the external SAML IdP.
 - Go to **Identity Providers > Add provider > SAML v2.0**.
 - Set:
   - **Alias**: `external-idp`.
-  - **IdP-Initiated SSO URL Name**: e.g., `external-idp-saml-my-client-app`.
+  - **IdP-Initiated SSO URL Name**: e.g., `external-idp-saml`.
   - **Import Metadata**: from the IdP’s metadata URL or XML file.
 - Ensure **Single Sign-On Service URL** is populated automatically.
 - Set **Single Logout Service URL** for SLO support.
 - Enable **Want AuthnRequests Signed**, if required by the IdP.
 - Configure attribute mappers for fields like `email`, `username`, etc.
 
+> 💡 The `IdP-Initiated SSO URL Name` above is very important in this step, as this URL will become the entry point for IdP-Initiated SSO targeting our OIDC clients.
+> Once the value of `IdP-Initiated SSO URL Name` is set, Keycloak exposes a new public URL like this:
+```
+https://<keycloak-domain>/auth/realms/<realm-name>/broker/<idp-alias>/endpoint/clients/<idp-initiated-sso-url-name>
+```
+**Example:**
+```
+https://example.com/auth/realms/my-realm/broker/external-idp/endpoint/clients/external-idp-saml
+```
 ---
 
 ### 3. 🧠 Customize the First Login Authentication Flow
