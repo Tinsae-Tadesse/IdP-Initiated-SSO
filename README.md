@@ -35,7 +35,7 @@ This client will act as the **Assertion Consumer Service (ACS)** endpoint to rec
   - **Assertion Consumer Service POST Binding URL**: `/sso/login` (or any endpoint you’ll use).
   - Enable **Force POST Binding**.
 
-> 💡 Configure signature and encryption settings to match your IdP requirements.
+> 💡 Configure signature and encryption settings to match your IdP requirements. In addition, the ACS POST Binding URL above is very important as we will use it in [Step 5](#5-add-apache-httpd-rewrite-rule).
 
 **Default ACS URL (used by Keycloak for SAML assertions):**
 ```
