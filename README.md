@@ -12,7 +12,7 @@ This guide explains how to configure **IdP-Initiated SSO using SAML 2.0**, with 
 - Keycloak is used as the intermediary (identity broker) between the IdP and OIDC applications.
 - One or more OIDC clients are already configured in Keycloak (e.g., `oidc-client-a`, `oidc-client-b`).
 - You want to enable **IdP-initiated login** and **Single Logout (SLO)**.
-- You are using Apache HTTP Server as your web server.
+- You are using [Apache HTTP Server](https://httpd.apache.org/) as your web server.
 
 ---
 
