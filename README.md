@@ -74,10 +74,12 @@ https://<keycloak-domain>/auth/realms/<realm-name>/broker/<idp-alias>/endpoint
 https://example.com/auth/realms/my-realm/broker/external-saml-idp/endpoint
 ```
 
-<br/>
+<br>
+
 ![SAML Client Configuration - 1](https://github.com/Tinsae-Tadesse/IdP-Initiated-SSO/blob/main/assets/saml-client-config-1.jpg?raw=true)
 
-<br/>
+<br>
+
 ![SAML Client Configuration - 2](https://github.com/Tinsae-Tadesse/IdP-Initiated-SSO/blob/main/assets/saml-client-config-2.jpg?raw=true)
 
 ---
