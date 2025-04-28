@@ -101,7 +101,7 @@ https://example.com/auth/realms/my-realm/broker/external-saml-idp/endpoint
 This ensures correct user provisioning and linking during the first login from the IdP.
 
 - Navigate to **Authentication > Flows > First Broker Login**.
-- Click **Copy**, and rename it (e.g., `First Broker Login - Custom`).
+- Click **Copy**, and rename it (e.g., `First Broker Login Flow - IDP`).
 - Edit the flow to add or configure:
   - `Create User If Unique` – Automatically create users if they don’t exist.
   - `Handle Existing Account` – Prevent duplicate accounts and guide linking.
@@ -120,9 +120,9 @@ This ensures correct user provisioning and linking during the first login from t
 This forces unauthenticated users to be redirected directly to the IdP.
 
 - Go to **Authentication > Flows > Browser**.
-- Click **Copy**, rename to `Browser - Auto Redirect`.
+- Click **Copy**, rename to `Browser Flow - IDP`.
 - Add the **Identity Provider Redirector** authenticator.
-- Set the **Default Identity Provider** to the IdP alias created in Step 2.
+- Set the **Default Identity Provider** to the IdP alias created in [Step 1](#1--configure-the-identity-provider-in-keycloak).
 - Go to **Bindings > Browser Flow**, and select your new flow as the default.
 
 ---
