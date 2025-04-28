@@ -45,7 +45,7 @@ This sets up trust between Keycloak and the external SAML IdP.
 
 <br>
 
-![Identity Provider Configuration - 2](https://github.com/Tinsae-Tadesse/IdP-Initiated-SSO/blob/main/assets/idp-config-1.jpg?raw=true)
+![Identity Provider Configuration - 2](https://github.com/Tinsae-Tadesse/IdP-Initiated-SSO/blob/main/assets/idp-config-2.jpg?raw=true)
 
 ---
 
