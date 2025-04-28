@@ -133,6 +133,6 @@ RewriteRule ^/sso/oidc-client-a/login$ https://oidc-client-a.example.com/ [R=302
 
 ## ✅ Conclusion
 
-By bridging SAML IdPs with modern OIDC applications through Keycloak, you create a seamless and secure IdP-Initiated SSO experience. With smart use of SAML proxying, custom authentication flows, and HTTPD rewrites, you can modernize your identity strategy without disrupting users.
+By bridging SAML IdPs with modern OIDC applications through Keycloak, you can create a seamless and secure IdP-Initiated SSO experience backed by the smart use of SAML proxying, custom authentication flows, and HTTPD rewrites.
 
 ---
