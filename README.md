@@ -136,7 +136,7 @@ Add the following to your Apache configuration:
 ```apache
 RewriteEngine On
 RewriteCond %{REQUEST_METHOD} POST
-RewriteRule ^/sso/login$ https://oidc-client-a.example.com/ [R=302,L]
+RewriteRule ^/sso/oidc-client-a/login$ https://oidc-client-a.example.com/ [R=302,L]
 ```
 
 > 🔁 Adjust the target URL as needed for your specific OIDC client(s).
