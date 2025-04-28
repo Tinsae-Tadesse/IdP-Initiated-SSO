@@ -37,6 +37,16 @@ This sets up trust between Keycloak and the external SAML IdP.
 - Enable **Want AuthnRequests Signed**, if required by the IdP.
 - Configure attribute mappers for fields like `email`, `username`, etc.
 
+#### Below are images that show the identity provider configuration
+
+<br>
+
+![Identity Provider Configuration - 1](https://github.com/Tinsae-Tadesse/IdP-Initiated-SSO/blob/main/assets/idp-config-1.jpg?raw=true)
+
+<br>
+
+![Identity Provider Configuration - 2](https://github.com/Tinsae-Tadesse/IdP-Initiated-SSO/blob/main/assets/idp-config-1.jpg?raw=true)
+
 ---
 
 ### 2. 🧩 Create a SAML Proxy Client in Keycloak
