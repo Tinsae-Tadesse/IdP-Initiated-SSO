@@ -74,6 +74,8 @@ https://<keycloak-domain>/auth/realms/<realm-name>/broker/<idp-alias>/endpoint
 https://example.com/auth/realms/my-realm/broker/external-saml-idp/endpoint
 ```
 
+#### Below are images that show the client configuration
+
 <br>
 
 ![SAML Client Configuration - 1](https://github.com/Tinsae-Tadesse/IdP-Initiated-SSO/blob/main/assets/saml-client-config-1.jpg?raw=true)
