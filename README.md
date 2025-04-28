@@ -52,7 +52,7 @@ This client will act as the **Assertion Consumer Service (ACS)** endpoint to rec
   - Enable **Force POST Binding**.
   - Configure signature and encryption settings to match your IdP requirements.
 
-> 💡 The `IdP-Initiated SSO URL Name` above is very important in this step, as this URL will become the entry point for IdP-Initiated SSO targeting our OIDC clients.
+> 💡 The `IdP-Initiated SSO URL Name` above is very important in this step, as this URL will become the entry point for IdP-Initiated SSO targeting our OIDC clients. Please note that this should be the URL configured as an assertion consumer endpoint at the external identity provider. 
 > Once the value of `IdP-Initiated SSO URL Name` is set, Keycloak exposes a new public URL like this:
 ```
 https://<keycloak-domain>/auth/realms/<realm-name>/broker/<idp-alias>/endpoint/clients/<idp-initiated-sso-url-name>
@@ -61,8 +61,9 @@ https://<keycloak-domain>/auth/realms/<realm-name>/broker/<idp-alias>/endpoint/c
 ```
 https://example.com/auth/realms/my-realm/broker/external-saml-idp/endpoint/clients/idpSAMLProxyClient
 ```
+<br>
 
-> 💡 In addition, the `ACS POST Binding URL` above is also very important as we will use it in [Step 5](#5-%EF%B8%8F-add-apache-httpd-rewrite-rule).
+> 💡 In addition, the `ACS POST Binding URL` above is also very important, as we will use it in [Step 5](#5-%EF%B8%8F-add-apache-httpd-rewrite-rule). If you don't want to set **IdP-Initiated SSO URL Name**, then the default ACS URL that keyclock will provide is the below.
 
 **Default ACS URL (used by Keycloak for SAML assertions):**
 ```
@@ -72,6 +73,12 @@ https://<keycloak-domain>/auth/realms/<realm-name>/broker/<idp-alias>/endpoint
 ```
 https://example.com/auth/realms/my-realm/broker/external-saml-idp/endpoint
 ```
+
+<br/>
+![SAML Client Configuration - 1](https://github.com/Tinsae-Tadesse/IdP-Initiated-SSO/blob/main/assets/saml-client-config-1.jpg?raw=true)
+
+<br/>
+![SAML Client Configuration - 2](https://github.com/Tinsae-Tadesse/IdP-Initiated-SSO/blob/main/assets/saml-client-config-2.jpg?raw=true)
 
 ---
 
